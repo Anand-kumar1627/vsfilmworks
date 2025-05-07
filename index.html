@@ -64,12 +64,33 @@
     visibility: hidden;
   }
 }
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .welcome-text {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  .welcome-text {
+    font-size: 1.6rem;
+    padding: 0 20px;
+  }
+    #welcome-screen {
+    animation: fadeOut 1.5s ease-in 2.5s forwards;
+  }
+}
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-    }body {
+    }
+	body {
+	margin: 0;
+	padding: 0;
   color: #fff;
   overflow-x: hidden;
   position: relative;
@@ -426,6 +447,43 @@ header, section, footer {
   to { opacity: 1; }
 }
 
+/* Base styling (desktop first) */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .swiper {
+    width: 70%;
+  }
+
+  .caption {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .swiper {
+    width: 90%;
+  }
+
+  .photo-card img {
+    border: 1px solid gold;
+    box-shadow: 0 0 5px gold;
+  }
+
+  .caption {
+    font-size: 0.95rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+}
+
 .video-section {
   padding: 40px;
   
@@ -481,6 +539,41 @@ transform: translateY(10px);}
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .video-caption {
+    font-size: 1rem;
+  }
+
+  .video-grid {
+    gap: 30px;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .video-caption {
+    font-size: 0.95rem;
+  }
+
+  .video-grid {
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .video-section {
+    padding: 20px 10px;
+  }
+
+  .video-box {
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+	margin-left: auto;
+	margin-right: auto;
+	transform: none;
+  }
 }
 
 /* Contact + Owner */
@@ -874,7 +967,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
     <div class="video-box" data-aos="fade-up" data-aos-delay="300">
       <video class="glow-video" controls playsinline preload="auto"
              onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;">
-        <source src="video2.mp4" type="video/mp4">
+        <source src="https://drive.google.com/file/d/1XBE6XRvTVOC9V7s9IfAzMNaynEkBPYtW/view?usp=drive_link" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="video-caption" data-aos="fade-up" data-aos-delay="700">Reception Diaries</div>
