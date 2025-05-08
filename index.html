@@ -90,6 +90,7 @@
       font-family: 'Poppins', sans-serif;
     }
 	body {
+	width: 100%;
 	margin: 0;
 	padding: 0;
   color: #fff;
@@ -97,7 +98,6 @@
   position: relative;
   z-index: 1;
 }
-
 
 .animated-bg {
   position: fixed;
@@ -109,32 +109,9 @@
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(2px) brightness(0.6);
-  will-change: background-image , filter;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  will-change: background-image;
   transition: filter 0.3s ease;
 }
-.dark-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-  }
-@keyframes bgFade {
-  0%   { background-image: url('bg1.jpg'); }
-  25%  { background-image: url('bg4.jpg'); }
-  50%  { background-image: url('bg1.jpg'); }
-  75%  { background-image: url('bg4.jpg'); }
-  100% { background-image: url('bg1.jpg'); }
-}
-
-@media (max-width: 768px) {
-  .animated-bg {
-  filter: blur(1px) brightness(0.7);
-  animation-duration: 20s;
-  }
-  }
 .dark-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -239,6 +216,55 @@ header, section, footer {
   color: #FFD700;
   text-shadow: 0 0 0px gold, 0 0 0px orange;
 }
+/* Responsive styles */
+
+/* Small devices (phones, up to 600px) */
+@media (max-width: 600px) {
+  .logo-wrapper {
+    width: 100px;
+    height: 100px;
+    border-width: 3px;
+  }
+
+  .glow-marquee {
+    padding: 8px;
+  }
+
+  .glow-marquee marquee {
+    font-size: 18px;
+  }
+}
+
+/* Medium devices (tablets, 601px–1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .logo-wrapper {
+    width: 120px;
+    height: 120px;
+    border-width: 4px;
+  }
+
+  .glow-marquee {
+    padding: 10px;
+  }
+
+  .glow-marquee marquee {
+    font-size: 22px;
+  }
+}
+
+/* Large devices (desktops, 1025px and up) */
+/* Optional if base styles are for desktop, but can still fine-tune */
+@media (min-width: 1025px) {
+  .logo-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .glow-marquee marquee {
+    font-size: 28px;
+  }
+}
+
 
 .services-list {
   display: flex;
@@ -271,11 +297,30 @@ header, section, footer {
   100% { transform: translateY(0); }
 }
 
+
+
+.package-container {
+  display: flex;
+  flex-wrap: nowrap; /* Allows wrapping on desktop/tablet */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 40px 20px 20px;
+}
+
+
+
 .package-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  
   background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,215,0,0.2));
   border: 2px solid gold;
   padding: 20px;
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 20px;
   width: 280px;
   animation: fadeIn 2s ease-in-out;
@@ -291,7 +336,17 @@ header, section, footer {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
 }
+@media (max-width: 600px) {
+  .package-container {
+    padding: 10px;
+    overflow-x: scroll;  /* Enables scroll on mobile */
+	justify-content: flex-start;
+  }
 
+  .package-card {
+    width: 240px; /* Adjust the card width for smaller screens */
+  }
+}
 .gold-title {
   font-size: 28px;
   font-weight: bold;
@@ -524,13 +579,13 @@ header, section, footer {
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 80px;
   padding: 20px;
 }
 
 .video-box {
-  width: 380%;
+  width: 100%;
   max-width: 340px;
   margin: 10px;
   padding: 0;  
@@ -541,7 +596,7 @@ header, section, footer {
   padding: 10px;
   border: 2px solid gold;
   border-radius: 10px;
-  over-flow: hidden;
+  overflow: hidden;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
 }
 
@@ -592,6 +647,7 @@ transform: translateY(10px);}
   }
 
   .video-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
     padding: 10px;
   }
@@ -811,12 +867,13 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
 }
 
 
-
  
 
   </style>
 </head>
-<body>
+<body >
+  
+  
 <div id="welcome-screen">
 <div class="blurred-bg"></div>
 <div class="overlay"></div>
@@ -824,7 +881,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   <div class="sparkles"></div>
 </div>
 
-  <main id="main-content">
+  <div class="main-content">
 
   <div class="dark-overlay"> 
   <div class="animated-bg"></div></div>
@@ -833,7 +890,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
       <marquee behavior="scroll" direction="left" style="font-family: 'Poppins',Anton;scrollamount=6">
         ~ VS Film Works ✨📷 — You Dream We Create ❄️🌟 ~
       </marquee>
-    </div><br><br><br><br>
+    </div>
 	<br><br><br><br>
 	 <div class="logo-wrapper">
       <div class="shine-overlay"></div>
@@ -873,59 +930,59 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   
     <h2 class="typewriter pulse-glow" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1200">Our Packages</h2>
 	<br><br>
-    <div class="services-list">
-      <div class="package-card" data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="100">
-        <h3 class="package-title gold-title"><b>Gold <br> Package</b></h3>
+    <div class="package-container">
+      <div class="package-card">
+        <h3 class="package-title gold-title"><b>Gold Package</b></h3>
 		<br>
         <p class="package-price">₹1,30,000</p>
 		<br>
         <ul>
-          <li data-aos="slide-left" data-aos-delay="100">Traditional Video (On Stage) - 1</li>
-          <li data-aos="slide-left" data-aos-delay="100">Traditional Photo (On Stage) - 1</li>
-          <li data-aos="slide-left" data-aos-delay="100">Candid Photo                - 1</li>
-		  <li data-aos="slide-left" data-aos-delay="100">Frames               - 2</li>
+          <li data-aos="slide-up" data-aos-delay="100">Traditional Video (On Stage) - 1</li>
+          <li data-aos="slide-up" data-aos-delay="200">Traditional Photo (On Stage) - 1</li>
+          <li data-aos="slide-up" data-aos-delay="300">Candid Photo                - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="400">Frames               - 2</li>
 		  
-		  <li data-aos="slide-left" data-aos-delay="100">TV                - 2</li>
-		  <li data-aos="slide-left" data-aos-delay="100">Canvera Ultra HD Album  - (50 Sheets)</li>
-		  <li data-aos="slide-left" data-aos-delay="100">Full Video Output</li>
+		  <li data-aos="slide-up" data-aos-delay="500">TV                - 2</li>
+		  <li data-aos="slide-up" data-aos-delay="600">Canvera Ultra HD Album  - (50 Sheets)</li>
+		  <li data-aos="slide-up" data-aos-delay="700">Full Video Output</li>
         </ul><br>
         <a href="https://wa.me/918686665897" class="book-now">Book Now</a>
       </div>
-      <div class="package-card" data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="200">
+      <div class="package-card">
         <h3 class="package-title platinum-title"><b>Platinum Package</b></h3>
 		<br>
         <p class="package-price">₹1,65,000</p>
 		<br>
         <ul>
           <li data-aos="slide-up" data-aos-delay="100">Traditional Video (On Stage) - 1</li>
-          <li data-aos="slide-up" data-aos-delay="100">Traditional Photo (On Stage) - 1</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Candid Photo - 1</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Candid Video - 1</li>
-		  <li data-aos="slide-up" data-aos-delay="100">TV - 2</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Frames - 2</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Outdoor Photoshoot , Cinematic Video - (1 Day)</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Canvera Ultra Premium Album - (70 Sheets)</li>
-		  <li data-aos="slide-up" data-aos-delay="100">Full Video Output , Promo</li>
+          <li data-aos="slide-up" data-aos-delay="200">Traditional Photo (On Stage) - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="300">Candid Photo - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="400">Candid Video - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="500">TV - 2</li>
+		  <li data-aos="slide-up" data-aos-delay="600">Frames - 2</li>
+		  <li data-aos="slide-up" data-aos-delay="700">Outdoor Photoshoot , Cinematic Video - (1 Day)</li>
+		  <li data-aos="slide-up" data-aos-delay="800">Canvera Ultra Premium Album - (70 Sheets)</li>
+		  <li data-aos="slide-up" data-aos-delay="900">Full Video Output , Promo</li>
         </ul>
 		<br>
         <a href="https://wa.me/918686665897" class="book-now">Book Now</a>
       </div>
-      <div class="package-card" data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="300">
+      <div class="package-card">
         <h3 class="package-title diamond-title"><b>Diamond Package</b></h3>
 		<br>
         <p class="package-price">₹2,00,000</p>
 		<br>
         <ul>
-          <li data-aos="slide-right" data-aos-delay="100">Traditional Video (On Stage) - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Traditional Photo (On Stage) - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Candid Photo - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Candid Video - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Drone - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Frames - 2</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Outdoor Photoshoot , Cinematic Video - (2 Days)</li>
-		  <li data-aos="slide-right" data-aos-delay="100">LED WALL - 1</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Canvera Ultra Premium Album - (100 Sheets)</li>
-		  <li data-aos="slide-right" data-aos-delay="100">Full Video Output , Promo</li>
+          <li data-aos="slide-up" data-aos-delay="100">Traditional Video (On Stage) - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="200">Traditional Photo (On Stage) - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="300">Candid Photo - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="400">Candid Video - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="500">Drone - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="500">Frames - 2</li>
+		  <li data-aos="slide-up" data-aos-delay="600">Outdoor Photoshoot , Cinematic Video - (2 Days)</li>
+		  <li data-aos="slide-up" data-aos-delay="700">LED WALL - 1</li>
+		  <li data-aos="slide-up" data-aos-delay="800">Canvera Ultra Premium Album - (100 Sheets)</li>
+		  <li data-aos="slide-up" data-aos-delay="900">Full Video Output , Promo</li>
         </ul>
 		</br>
         <a href="https://wa.me/918686665897" class="book-now">Book Now</a>
@@ -1117,7 +1174,6 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  <script>
-  
   
  
 
