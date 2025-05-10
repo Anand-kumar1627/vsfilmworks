@@ -7,29 +7,70 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preload" as ="image" href="welcom.jpg"/>
+  <link rel="preload" as ="image" href="bg1.webp"/>
+  <link rel="preload" as ="image" href="bg4.webp"/>
+  <link rel="preload" as ="image" href="bg1.webp"/>
+  <link rel="preload" as ="image" href="bg4.webp"/>
   <style>
   
-  #welcome-screen {
+  body.loading {
+  background-color: black;
+  overflow: hidden;
+}
+
+/* Welcome Screen */
+#welcome-screen {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  background-color: black;
   align-items: center;
   justify-content: center;
+  background-color: black;
   z-index: 9999;
   animation: fadeOut 1s ease-in 3s forwards;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
-.blurred-bg {
+/* Blurred Background */
+#welcome-screen .blurred-bg {
   position: absolute;
   inset: 0;
-  
-  background: url('welcom.jpg') no-repeat center center/cover;
+  background: url('welcom.jpg') no-repeat center center;
+  background-size: cover;
   filter: blur(4px);
   z-index: -2;
+  will-change: transform, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+}
+
+/* Optional fade out animation */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Image Preload to avoid white glitch */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('welcom.jpg') no-repeat center center;
+  background-size: cover;
+  z-index: -9999;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .overlay {
@@ -51,7 +92,7 @@
   opacity: 0;
   transform: scale(0.8);
   animation: fadeInScale 1.5s ease-out forwards;
-  
+  will-change: opacity, transform;
 }
 
 @keyframes fadeInScale {
@@ -109,27 +150,53 @@ html {
    height: 100vh;
    }
 
+
+/* Animated Background */
 .animated-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; min-height: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100%;
+  height: 100%;
   z-index: -2;
+
   animation: bgFade 40s infinite alternate ease-in-out;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(2px) brightness(0.6);
-  will-change: background-image;
-  transition: filter 0.3s ease;
   background-image: url('bg1.webp');
+  filter: blur(2px) brightness(0.6);
+
+  will-change: background-image, filter;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: filter 0.3s ease;
 }
+
+/* Dark Overlay */
 .dark-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; min-height: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: -1;
-  }
+
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Background Animation Keyframes */
 @keyframes bgFade {
   0%   { background-image: url('bg1.webp'); }
   25%  { background-image: url('bg4.webp'); }
@@ -138,6 +205,19 @@ html {
   100% { background-image: url('bg1.webp'); }
 }
 
+/* Optional: Preload key images using body::before to prevent white flickers */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('bg1.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -9999;
+}
 
 header, section, footer {
   padding: 60px 20px;
@@ -884,7 +964,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
 
   </style>
 </head>
-<body >
+<body class="loading">
   
   
 <div id="welcome-screen">
@@ -897,8 +977,8 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   <div class="main-content">
 
    <div class="background-wrapper">
-    <div class="animated-bg" style="background-image: url('bg1.jpg');"></div>
-    <div class="animated-bg next"></div>
+    <div class="animated-bg"></div>
+   
   </div>
 
   <header>
@@ -1191,8 +1271,40 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  <script>
   
+   window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+  });
 
-  
+  window.onbeforeunload = () => {
+    window.scrollTo(0, 0);
+  };
+
+
+
+
+  window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.body.classList.remove('loading');
+    document.getElementById('welcome-screen').style.display = 'none';
+  }, 4000); // 3s wait + 1s fade out
+});
+
+window.addEventListener('load', () => {
+    // Ensure the body is ready for interaction
+    document.body.classList.remove('loading');
+
+    // Optional: force GPU layer to stay warm (avoids frame drop on low-end devices)
+    const bg = document.querySelector('.animated-bg');
+    if (bg) {
+      bg.style.transform = 'translateZ(0)';
+    }
+
+    // Optionally, show content only after animation setup is ready
+    const overlay = document.querySelector('.dark-overlay');
+    overlay.style.opacity = '1'; // in case you want to animate it later
+  });
   
     AOS.init();
     new Swiper(".mySwiper", {
