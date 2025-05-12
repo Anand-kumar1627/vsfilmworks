@@ -1,3 +1,4 @@
+
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -161,7 +162,7 @@ html {
    overflow-x: hidden;
    scroll-behavior: smooth;
    min-height: 100vh;
-   backgroung-color: black;
+   background-color: black;
    }
 
 
@@ -1080,7 +1081,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
 
   <header>
   <div class="glow-marquee marquee">
-      <marquee behavior="scroll" direction="left" style="font-family: 'Poppins',Anton;scrollamount=6">
+      <marquee behavior="scroll" direction="left" style="font-family: 'Poppins',Anton;scrollamount:6">
         ~ VS Film Works ✨📷 — You Dream We Create ❄️🌟 ~
       </marquee>
     </div>
@@ -1127,7 +1128,7 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
 	<br><br>
     <div class="package-container">
       <div class="package-card">
-        <h3 class="package-title gold-title"><b>Gold Package</b></h3>
+        <h3 class="package-title gold-title"><b>Gold <br>Package</b></h3>
 		<br>
         <p class="package-price">₹1,30,000</p>
 		<br>
@@ -1249,38 +1250,38 @@ text-shadow: 0 0 2px gold, 0 0 2px gold, 0 0 0px goldenrod;
   <div class="video-grid">
     
     <div class="video-box" data-aos="fade-up" data-aos-delay="200">
-      <video class="glow-video" controls playsinline preload="auto" 
-             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;">
-        <source src="video1.mp4" type="video/mp4">
+      <iframe class="glow-video" controls playsinline preload="auto" 
+             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;"
+        width="200" height="200" src="https://www.youtube.com/embed/CKnZwKlCIGs?si=rbq9s3cczNzsh2_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+        </iframe>
       <div class="video-caption" data-aos="fade-up" data-aos-delay="600">Golden Glimpse</div>
     </div>
 
     <div class="video-box" data-aos="fade-up" data-aos-delay="300">
-      <video class="glow-video" controls playsinline preload="auto"
-             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;">
-        <source src="https://drive.google.com/file/d/1XBE6XRvTVOC9V7s9IfAzMNaynEkBPYtW/view?usp=drive_link" type="video/mp4">
+       <iframe class="glow-video" controls playsinline preload="auto" 
+             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;"
+        width="200" height="200" src="https://www.youtube.com/embed/CKnZwKlCIGs?si=rbq9s3cczNzsh2_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+        </iframe>
       <div class="video-caption" data-aos="fade-up" data-aos-delay="700">Reception Diaries</div>
     </div>
 
     <div class="video-box" data-aos="fade-up" data-aos-delay="400">
-      <video class="glow-video" controls playsinline preload="auto" 
-             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;">
-        <source src="video3.mp4" type="video/mp4">
+       <iframe class="glow-video" controls playsinline preload="auto" 
+             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;"
+        width="200" height="200" src="https://www.youtube.com/embed/CKnZwKlCIGs?si=rbq9s3cczNzsh2_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+        </iframe>
       <div class="video-caption" data-aos="fade-up" data-aos-delay="800">Arrival Of Grace</div>
     </div>
 
     <div class="video-box" data-aos="fade-up" data-aos-delay="500">
-      <video class="glow-video" controls playsinline preload="auto" 
-             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;">
-        <source src="video4.mp4" type="video/mp4">
+      <iframe class="glow-video" controls playsinline preload="auto" 
+             onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime = 0;"
+        width="200" height="200" src="https://www.youtube.com/embed/CKnZwKlCIGs?si=rbq9s3cczNzsh2_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+        </iframe>
       <div class="video-caption" data-aos="fade-up" data-aos-delay="800">Unboxing Elegence</div>
     </div>
 
@@ -1458,24 +1459,53 @@ window.addEventListener('load', () => {
     });
   });
 
- const form = document.getElementById("vs-booking-form");
-  const confirmation = document.getElementById("booking-confirmation");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
+const form = document.getElementById("vs-booking-form");
+const confirmation = document.getElementById("booking-confirmation");
 
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  // Extract values
+  const name = data.get("name");
+  const email = data.get("email");
+  const phone = data.get("phone");
+  const date = data.get("date");
+  const service = data.get("service");
+  const message = data.get("message");
+
+  // Construct WhatsApp message
+  const whatsappMessage = `*Big Welcome to Our New Client – You Dream , We Create – VS Film Works! :*
+\nName: ${name}
+\nEmail: ${email}
+\nPhone: ${phone}
+\nDate: ${date}
+\nService: ${service}
+\nAdditional Notes: ${message || "None"}`;
+
+  const whatsappURL = `https://wa.me/918686665897?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // Open WhatsApp immediately
+  window.open(whatsappURL, '_blank');
+
+  // Submit to Formspree silently
+  try {
     await fetch(form.action, {
       method: "POST",
       body: data,
       headers: {
         'Accept': 'application/json'
       }
-	  
     });
+  } catch (err) {
+    console.warn("Formspree submission failed, but WhatsApp sent.");
+  }
 
-    form.reset();
-    confirmation.style.display = "block";
-  });
+  // Show confirmation message on site
+  form.reset();
+  confirmation.style.display = "block";
+});
+</script>
   </script></body>
 </html>
